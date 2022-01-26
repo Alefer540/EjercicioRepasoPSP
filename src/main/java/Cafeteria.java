@@ -9,7 +9,7 @@ public class Cafeteria {
 
 
     static void quiereentrar(Huespedes huespedes){
-        System.out.println("el cliente " + huespedes.nomhuesped+ " SE QUIERE SENTAR");
+       // System.out.println("el cliente " + huespedes.nomhuesped+ " SE QUIERE SENTAR");
 
         try {
             semaforo1.acquire(1);
@@ -29,20 +29,23 @@ public class Cafeteria {
             e.printStackTrace();
         }
     }
-    private static void cogercafe(Huespedes huespedes){
+    private static void cogercafe(Huespedes huespedes) throws InterruptedException {
         System.out.println(("El cliente "+huespedes.nomhuesped+ " RECOGE SU TAZA"));
         tomarcafe(huespedes);
+        seva(huespedes);
 
 
 
     }
-    private static void tomarcafe(Huespedes huespedes){
+    private static void tomarcafe(Huespedes huespedes) throws InterruptedException {
         System.out.println("El cliente "+ huespedes.nomhuesped+" COMIENZA SU CAFE");
-        try {
-            Thread.sleep((new Random().nextInt(5)  + 3)*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep((new Random().nextInt(5)  + 3)*1000);
+        System.out.println("El cliente "+ huespedes.nomhuesped+" TERMINA SU CAFE");
+    }
+    private static void seva(Huespedes huespedes) throws InterruptedException {
+        System.out.println("El cliente "+ huespedes.nomhuesped+" SE VA");
+        Thread.sleep((new Random().nextInt(4)  + 2)*1000);
+
 
     }
 
